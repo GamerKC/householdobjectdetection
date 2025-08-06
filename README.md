@@ -1,4 +1,4 @@
-# 🧠 YOLO Object Detection with Gradio GUI
+# 🧠 Scanventory: Auto-inventory household items from images or video, aimed at simplifying insurance documentation and personal property tracking
 
 This project is a simple web app built with [Gradio](https://www.gradio.app/) that allows users to upload an image and see object detections using a custom model. The app annotates the image with bounding boxes and labels and displays the detected object list.
 
