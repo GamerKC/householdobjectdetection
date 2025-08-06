@@ -1,6 +1,6 @@
 # 🧠 YOLO Object Detection with Gradio GUI
 
-This project is a simple web app built with [Gradio](https://www.gradio.app/) that allows users to upload an image and see object detections using a YOLOv8 model (`yolo11m.pt` by default). The app annotates the image with bounding boxes and labels and displays the detected object list.
+This project is a simple web app built with [Gradio](https://www.gradio.app/) that allows users to upload an image and see object detections using a custom model. The app annotates the image with bounding boxes and labels and displays the detected object list.
 
 ---
 
@@ -23,7 +23,7 @@ This project is a simple web app built with [Gradio](https://www.gradio.app/) th
 ## 🛠️ Requirements
 
 - Python 3.8+
-- `ultralytics` (YOLOv8)
+- `ultralytics`
 - `gradio`
 - `opencv-python`
 - `numpy`
