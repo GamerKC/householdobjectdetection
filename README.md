@@ -7,7 +7,7 @@ This project is a simple web app built with [Gradio](https://www.gradio.app/) th
 ## 🚀 Features
 
 - Upload any image via browser
-- Detect and annotate objects using YOLOv8
+- Detect and annotate objects using YOLO based custom vision model
 - Visualize the output with bounding boxes and confidence scores
 - See a list of all detected objects
 - No need to write any frontend code!
