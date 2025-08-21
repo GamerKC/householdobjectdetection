@@ -1,7 +1,7 @@
 import cv2
 from ultralytics import YOLO
 
-def detect_objects_and_annotate(image_path, model_path="yolo11m.pt", output_path="output.jpg"):
+def detect_objects_and_annotate(image_path, model_path="best.pt", output_path="output.jpg"):
     # Load model
     model = YOLO(model_path)
 
@@ -11,27 +11,29 @@ def detect_objects_and_annotate(image_path, model_path="yolo11m.pt", output_path
         raise FileNotFoundError(f"Could not read image at {image_path}")
 
     # Inference
-    results = model(image)[0]
+    results = model(image, verbose=False)[0]
 
-    # Collect object names and draw annotations
-    print("Detected objects:")
+    # Collect unique object names and draw annotations
+    unique_classes = set()
     for box in results.boxes:
-        class_id = int(box.cls[0])
+        class_id = int(box.cls[0].item() if hasattr(box.cls[0], "item") else box.cls[0])
         class_name = model.names[class_id]
-        conf = float(box.conf[0])
         x1, y1, x2, y2 = map(int, box.xyxy[0])
 
-        print(f" - {class_name}: {conf:.2f}")
+        unique_classes.add(class_name)
 
-        # Draw box and label
+        # Draw box and label (class name only, no probability)
         cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), 2)
-        label = f"{class_name} {conf:.2f}"
-        cv2.putText(image, label, (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX,
+        cv2.putText(image, class_name, (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX,
                     0.5, (0, 255, 0), 2)
 
     # Save annotated image
     cv2.imwrite(output_path, image)
-    print(f"\nAnnotated image saved to {output_path}")
+    print(f"Annotated image saved to {output_path}")
+
+    # Print unique detected classes (sorted for consistency)
+    print("\nUnique detected objects:")
+    print(sorted(unique_classes))
 
     # Optional: Display image
     cv2.imshow("Detected Objects", image)
@@ -44,7 +46,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("image_path", help="Path to input image")
-    parser.add_argument("--model_path", default="yolo11m.pt", help="Path to YOLO model file")
+    parser.add_argument("--model_path", default="best.pt", help="Path to YOLO model file")
     parser.add_argument("--output_path", default="output.jpg", help="Path to save annotated image")
     args = parser.parse_args()
 
