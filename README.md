@@ -14,9 +14,9 @@ This project is a simple web app built with [Gradio](https://www.gradio.app/) th
 
 ---
 
-## 🖼️ Example
+## Online Version
 
-![Example Screenshot](example.jpg)
+An online version is available at https://huggingface.co/spaces/chaparalak/Scanventory.
 
 ---
 
