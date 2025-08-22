@@ -96,6 +96,18 @@ names:
   77: teddy bear
   78: hair drier
   79: toothbrush
+  80: bed
+  81: chair
+  82: couch
+  83: dining table
+  84: laptop
+  85: microwave
+  86: oven
+  87: refrigerator
+  88: sink
+  89: toaster
+  90: toilet
+  91: tv
 
 # Download script/URL (optional)
 download: |
